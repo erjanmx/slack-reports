@@ -7,14 +7,22 @@ version: 0.0.1
 environment:
   sdk: '>=1.20.1 <2.0.0'
 
+dependencies:
+  angular: ^4.0.0
+
 #dependencies:
 #  path: ^1.4.1
 
 dev_dependencies:
+  angular_test: ^1.0.0
   browser: ^0.10.0
   dart_to_js_script_rewriter: ^1.0.1
+  test: ^0.12.30
 
 transformers:
+- angular:
+    entry_points:
+    - web/main.dart
 - dart_to_js_script_rewriter
 
 # Uncomment the following in sdk 1.24+ to make pub serve
