@@ -1,8 +1,14 @@
 import 'package:angular/angular.dart';
+import 'package:angular_forms/angular_forms.dart';
+
 @Component(
   selector: 'my-app',
-  template: '<h1>Hello {{name}}</h1>',
+  templateUrl: 'app_component.html',
+  styleUrls: const ['app_component.css'],
+  directives: const [CORE_DIRECTIVES, formDirectives],
 )
+
 class AppComponent {
-  var name = 'Angular';
+  final title = 'Dashboard';
+  final List columns = ['Todo', 'Doing', 'Done'];
 }
