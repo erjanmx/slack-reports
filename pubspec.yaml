@@ -10,6 +10,7 @@ environment:
 dependencies:
   angular: ^4.0.0
   angular_forms: ^1.0.0
+  angular_components: "^0.8.0"
 
 #dependencies:
 #  path: ^1.4.1
