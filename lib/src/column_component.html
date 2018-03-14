@@ -4,17 +4,17 @@
     </div>
     <ul class="card-list">
         <li *ngFor="let card of cards">
-            <emx-card [card]="card"></emx-card>
+            <emx-card (cardRemovedEvent)="deleteCard(card)" [card]="card"></emx-card>
         </li>
     </ul>
-    <div class="add-card" (click)="enableAddCard()" >
+    <div class="add-card" (click)="enableAddCard();" >
             <span [style.display]="addingCard ? 'none' : ''" >
                 Add a card...
             </span>
 
         <input  #card
                 [style.display]="addingCard ? '' : 'none' "
-                (keyup.enter)="addCard(card.value)"
+                (keyup.enter)="addCard(card.value); card.value=''"
                 />
     </div>
 </div>

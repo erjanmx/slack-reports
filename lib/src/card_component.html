@@ -1,4 +1,7 @@
 <li class="card">
-    <span [innerHtml]="card.title" [style.display]="editingCard ? 'none' : ''">
-    </span>
+    <div [style.display]="editingCard ? 'none' : ''" (click)="editCard()">
+        <span [innerHtml]="card.title"></span>
+        <material-icon (click)="deleteCard()" size="medium" light="light" icon="cancel"></material-icon>
+    </div>
+    <input (blur)="cancelEditCard()" [style.display]="editingCard ? '' : 'none'">
 </li>

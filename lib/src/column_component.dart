@@ -17,16 +17,22 @@ class ColumnComponent {
   Column column;
 
   @Input()
-  List<Card> cards = [];
+  List<Card> cards = [new Card(1, 'New card', 2, 1)];
 
   bool addingCard = false;
 
   void addCard(String title) {
-    this.cards.add(new Card(1, title, this.column.id, 1));
+    if (!title.trim().isEmpty) {
+      this.cards.add(new Card(1, title, this.column.id, 1));
+    }
     this.addingCard = false;
   }
 
   void enableAddCard() {
     this.addingCard = true;
+  }
+
+  void deleteCard(Card card) {
+    this.cards.remove(card);
   }
 }
