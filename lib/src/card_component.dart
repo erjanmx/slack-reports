@@ -5,6 +5,7 @@ import 'package:slack_reports/src/card.dart';
 @Component(
   selector: 'emx-card',
   templateUrl: 'card_component.html',
+  styleUrls: const ['card_component.css'],
   directives: const [CORE_DIRECTIVES],
 )
 
