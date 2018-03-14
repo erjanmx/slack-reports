@@ -1,0 +1,22 @@
+<div class="column">
+    <div class="column-header">
+        <h4 [innerHtml]="column.name"></h4>
+    </div>
+    <ul class="card-list">
+        <!--<li *ngFor="let card of cards | where : { columnId: column._id } | orderBy : 'order'">-->
+            <!--<gtm-card [card]="card"></gtm-card>-->
+        <!--</li>-->
+    </ul>
+    <div class="add-card">
+            <span [style.display]="addingCard ? 'none' : ''" >
+                Add a card...
+            </span>
+
+        <!--<input-->
+                <!--[style.display]="addingCard ? '' : 'none' "-->
+                <!--[attr.autofocus]="addingCard"-->
+                <!--(keyup)="addCardOnEnter($event)"-->
+                <!--(blur)="addCardOnBlur()"-->
+                <!--[(ngModel)]="addCardText" />-->
+    </div>
+</div>
