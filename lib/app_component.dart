@@ -25,11 +25,26 @@ class AppComponent {
     ];
 
     this.board.cards = [
-      new Card(1, 'Test-1', 1, 1),
-      new Card(2, 'Test-2', 2, 1),
-      new Card(3, 'Test-3', 2, 1),
-      new Card(4, 'Test-4', 2, 1),
-      new Card(5, 'Test-5', 3, 1),
+      new Card(1, 'Test-1', 1, 1, 1),
+      new Card(2, 'Test-2', 2, 1, 1),
+      new Card(3, 'Test-3', 2, 1, 1),
+      new Card(4, 'Test-4', 2, 1, 1),
+      new Card(5, 'Test-5', 3, 1, 2),
+      new Card(6, 'Test-6', 3, 1, 0),
     ];
+
+    this.board.projects = [
+      new Card(1, 'Project-1', 0, 1, 0),
+      new Card(2, 'Project-2', 0, 1, 0),
+    ];
+  }
+
+  deleteProject(Card card) {
+    this.board.cards = this.board.cards.map((Card c) {
+      if (c.projectId == card.id) {
+        c.projectId = 0;
+      }
+     return c;
+    }).toList();
   }
 }

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:angular/angular.dart';
 
 import 'package:slack_reports/src/card.dart';
@@ -21,6 +22,11 @@ class ColumnComponent {
 
   bool addingCard = false;
 
+  final StreamController _projectRemovedEvent = new StreamController<Card>();
+  @Output()
+  Stream<Card> get projectRemovedEvent => _projectRemovedEvent.stream;
+
+
   List<Card> filteredCards() {
     return this.cards.where(
       (Card card) => (card.columnId == this.column.id)
@@ -39,6 +45,10 @@ class ColumnComponent {
   }
 
   void deleteCard(Card card) {
+    if (card.columnId == 0) {
+      _projectRemovedEvent.add(card);
+    }
+
     this.cards.remove(card);
   }
 

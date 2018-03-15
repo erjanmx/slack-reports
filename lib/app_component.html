@@ -4,6 +4,9 @@
     <div *ngFor="let column of board.columns">
         <emx-column [column]="column" [cards]="board.cards"></emx-column>
     </div>
-
+    <div class="projects">
+        <emx-column [column]="board.projectColumn" (projectRemovedEvent)="deleteProject($event)" [cards]="board.projects">
+        </emx-column>
+    </div>
 </section>
 <textarea>{{ board }}</textarea>
