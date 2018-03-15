@@ -1,15 +1,15 @@
 <li class="card" [style.background]="getColor()">
-    <div [style.display]="editingCard ? 'none' : ''" >
-        <span [innerHtml]="card.title"></span>
+    <div [style.display]="editingCard ? 'none' : ''">
+        <span [innerHtml]="card.title" (click)="editCard()"></span>
+        <material-icon (click)="deleteCard()" size="medium" light="light" icon="cancel"></material-icon>
 
         <div *ngIf="card.columnId!=0" class="dropdown">
-            <material-icon size="medium" light="light" icon="view_headline" (click)="showingMenu=true;"></material-icon>
+            <material-icon size="medium" light="light" icon="view_headline" [style.background]="getCardColor()" (click)="showingMenu=true;"></material-icon>
 
             <div [class.show]="showingMenu" class="dropdown-content">
-                <a *ngFor="let project of projects" (click)="showingMenu=false;">{{ project.title }}</a>
+                <a *ngFor="let project of projects" (click)="attachProject(project.id)">{{ project.title }}</a>
             </div>
         </div>
-        <material-icon (click)="deleteCard()" size="medium" light="light" icon="cancel"></material-icon>
     </div>
     <textarea
             [style.display]="editingCard ? '' : 'none' "
