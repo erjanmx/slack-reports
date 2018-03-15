@@ -17,6 +17,9 @@ class CardComponent {
   @Input()
   Card card;
 
+  @Input()
+  List<Card> projects;
+
   final StreamController _cardRemovedEvent = new StreamController<Card>();
   final StreamController _cardUpdatedEvent = new StreamController<Card>();
 
@@ -30,6 +33,7 @@ class CardComponent {
   ];
 
   bool editingCard = false;
+  bool showingMenu = false;
 
   void deleteCard() {
     _cardRemovedEvent.add(this.card);

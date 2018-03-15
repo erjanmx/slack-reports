@@ -1,6 +1,14 @@
 <li class="card" [style.background]="getColor()">
     <div [style.display]="editingCard ? 'none' : ''" (click)="editCard()">
         <span [innerHtml]="card.title"></span>
+
+        <div class="dropdown">
+            <material-icon size="medium" light="light" icon="view_headline" (click)="showingMenu=true;"></material-icon>
+
+            <div [class.show]="showingMenu" class="dropdown-content">
+                <a *ngFor="let project of projects">{{ project.title }}</a>
+            </div>
+        </div>
         <material-icon (click)="deleteCard()" size="medium" light="light" icon="cancel"></material-icon>
     </div>
     <textarea
