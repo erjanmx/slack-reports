@@ -42,9 +42,9 @@ class ColumnComponent {
 
   void addCard(String title) {
     if (!title.trim().isEmpty) {
-      _addCardEvent.add(new Card(
-          this.cards.length + 1, title, this.column.id, 999, 0
-      ));
+      int i = (this.column.id != 0) ? this.projects.length : this.cards.length;
+
+      _addCardEvent.add(new Card(i + 1, title, this.column.id, 999, 0));
     }
     this.addingCard = false;
   }

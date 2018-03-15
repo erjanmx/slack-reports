@@ -5,7 +5,7 @@
         <emx-column [column]="column" [cards]="board.cards" (addCardEvent)="addCard($event)" [projects]="board.projects"></emx-column>
     </div>
     <div class="projects">
-        <emx-column [column]="board.projectColumn" (projectRemovedEvent)="deleteProject($event)" [cards]="board.projects">
+        <emx-column [column]="board.projectColumn" (projectRemovedEvent)="deleteProject($event)" (addCardEvent)="addCard($event)" [cards]="board.projects">
         </emx-column>
     </div>
 </section>
