@@ -1,7 +1,7 @@
 <h2>{{ title }}</h2>
 
 <section id="main">
-    <div *ngFor="let column of columns">
-        <emx-column [column]="column"></emx-column>
+    <div *ngFor="let column of board.columns">
+        <emx-column [column]="column" [cards]="board.cards"></emx-column>
     </div>
 </section>
