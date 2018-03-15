@@ -47,4 +47,8 @@ class AppComponent {
      return c;
     }).toList();
   }
+
+  void addCard(Card card) {
+    this.board.cards.add(card);
+  }
 }

@@ -23,8 +23,12 @@ class ColumnComponent {
   bool addingCard = false;
 
   final StreamController _projectRemovedEvent = new StreamController<Card>();
+  final StreamController _addCardEvent = new StreamController<Card>();
+
   @Output()
   Stream<Card> get projectRemovedEvent => _projectRemovedEvent.stream;
+  @Output()
+  Stream<Card> get addCardEvent => _addCardEvent.stream;
 
 
   List<Card> filteredCards() {
@@ -35,7 +39,9 @@ class ColumnComponent {
 
   void addCard(String title) {
     if (!title.trim().isEmpty) {
-      this.cards.add(new Card(1, title, this.column.id, 1));
+      _addCardEvent.add(new Card(
+          this.cards.length + 1, title, this.column.id, 999, 0
+      ));
     }
     this.addingCard = false;
   }
