@@ -8,11 +8,26 @@ class Board {
   List<Column> columns = [];
   List<Card> cards = [];
 
+  bool eveningReport = false;
+
   Map<int, String> statuses = {
-    1: '',
+    1: 'НЕ СДЕЛАНО',
     2: 'В ПРОЦЕССЕ',
     3: 'СДЕЛАНО',
   };
+
+  String getCard(Card card) {
+    if (!this.eveningReport) {
+      if (card.columnId == 3) {
+        return '';
+      }
+
+      return '${card.title}\n';
+    }
+
+    return '${card.title} - ${this.statuses[card.columnId]}\n';
+  }
+
 
   String projectCards() {
     String output = '';
@@ -25,7 +40,7 @@ class Board {
         output += '\n- ${project.title}\n';
 
         projectCards.forEach((Card card) {
-          output += '${card.title} - ${this.statuses[card.columnId]}\n';
+          output += this.getCard(card);
         });
 
       }
@@ -43,7 +58,7 @@ class Board {
       output += '\n';
 
       nonProjectCards.forEach((Card card) {
-        output += '${card.title} - ${this.statuses[card.columnId]}\n';
+        output += this.getCard(card);
       });
     }
 

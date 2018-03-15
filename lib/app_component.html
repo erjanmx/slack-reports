@@ -9,4 +9,8 @@
         </emx-column>
     </div>
 </section>
+<div class="toggle">
+    <material-toggle [disabled]="false" [(checked)]="board.eveningReport" label="Evening report">
+    </material-toggle>
+</div>
 <textarea>{{ board }}</textarea>

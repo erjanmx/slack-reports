@@ -1,6 +1,6 @@
 #main {
     min-width: 100%;
-    height: calc(60% - 90px);
+    min-height: 50%;
     overflow: hidden;
 }
 
@@ -24,4 +24,9 @@ textarea {
 
 h2 {
     margin-left: 10px;
+}
+
+.toggle {
+    margin-left: 10px;
+    color: white;
 }

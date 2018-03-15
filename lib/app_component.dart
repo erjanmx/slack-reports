@@ -4,12 +4,14 @@ import 'package:slack_reports/src/board.dart';
 import 'package:slack_reports/src/card.dart';
 import 'package:slack_reports/src/column.dart';
 import 'package:slack_reports/src/column_component.dart';
+import 'package:angular_components/angular_components.dart';
+
 
 @Component(
   selector: 'my-app',
   templateUrl: 'app_component.html',
   styleUrls: const ['app_component.css'],
-  directives: const [CORE_DIRECTIVES, ColumnComponent],
+  directives: const [CORE_DIRECTIVES, ColumnComponent, MaterialToggleComponent],
 )
 
 class AppComponent {
@@ -26,11 +28,18 @@ class AppComponent {
 
     this.board.cards = [
       new Card(1, 'Test-1', 1, 0, 1),
-      new Card(2, 'Test-2', 2, 0, 1),
-      new Card(3, 'Test-3', 2, 1, 1),
-      new Card(4, 'Test-4', 2, 2, 1),
-      new Card(5, 'Test-5', 3, 0, 2),
-      new Card(6, 'Test-6', 3, 0, 0),
+      new Card(2, 'Test-2', 1, 0, 1),
+      new Card(3, 'Test-3', 1, 1, 1),
+      new Card(4, 'Test-4', 1, 2, 1),
+      new Card(5, 'Test-5', 2, 0, 2),
+      new Card(6, 'Test-6', 2, 0, 0),
+      new Card(7, 'Test-6', 2, 0, 0),
+      new Card(8, 'Test-6', 2, 0, 0),
+      new Card(9, 'Test-6', 2, 0, 0),
+      new Card(10, 'Test-6', 3, 1, 0),
+      new Card(11, 'Test-6', 3, 2, 0),
+      new Card(12, 'Test-6', 3, 1, 0),
+      new Card(13, 'Test-6', 3, 1, 0),
     ];
 
     this.board.projects = [
@@ -49,6 +58,11 @@ class AppComponent {
   }
 
   void addCard(Card card) {
-    this.board.cards.add(card);
+    if (card.columnId == 0) {
+      card.order = this.board.projects.length + 1;
+      this.board.projects.add(card);
+    } else {
+      this.board.cards.add(card);
+    }
   }
 }
