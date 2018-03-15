@@ -25,6 +25,10 @@ class CardComponent {
   @Output()
   Stream<Card> get cardUpdatedEvent => _cardUpdatedEvent.stream;
 
+  List<String> colors = ['#61bd4f', '#f2d600', '#ffab4a', '#eb5a46',
+  '#c377e0 ', '#0079bf', '#0079bf', '#00c2e0', '#51e898', '#ff80ce',
+  ];
+
   bool editingCard = false;
 
   void deleteCard() {
@@ -42,5 +46,13 @@ class CardComponent {
 
   void cancelEditCard() {
     this.editingCard = false;
+  }
+
+  String getColor() {
+    if (this.card.columnId != 0) {
+      return '';
+    }
+
+    return this.colors[this.card.order];
   }
 }

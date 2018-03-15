@@ -1,4 +1,4 @@
-<li class="card">
+<li class="card" [style.background]="getColor()">
     <div [style.display]="editingCard ? 'none' : ''" (click)="editCard()">
         <span [innerHtml]="card.title"></span>
         <material-icon (click)="deleteCard()" size="medium" light="light" icon="cancel"></material-icon>
