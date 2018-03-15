@@ -1,6 +1,6 @@
 #main {
     min-width: 100%;
-    /*height: calc(100% - 90px);*/
+    height: calc(60% - 90px);
     overflow: hidden;
 }
 
@@ -14,6 +14,10 @@
     font-size: 18px;
     font-weight: bold;
     color: white;
-    cursor: pointer;
-    cursor: hand;
+}
+
+textarea {
+    width: 825px;
+    height: 40%;
+    margin-left: 10px;
 }

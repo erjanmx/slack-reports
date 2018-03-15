@@ -10,7 +10,6 @@
 }
 .column h4 {
     color: #4d4d4d;
-    line-height: 100%;
     margin-left: 10px;
     margin-top: 8px;
     font-weight: 700;
@@ -21,11 +20,9 @@
     width: 260px;
     display: inline-block;
     cursor: pointer;
-    cursor: hand;
 }
 .column-header {
     cursor: pointer;
-    cursor: hand;
 }
 .column .column-header input {
     margin-left: 5px;

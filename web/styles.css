@@ -52,7 +52,6 @@ li.card-placeholder {
 }
 
 .column-placeholder {
-  width: 280px;
   height: 280px;
   background-color: #0067A3;
   border-radius: 3px;
@@ -66,4 +65,9 @@ li.card-placeholder {
 
 #main > div {
   float: left;
+}
+
+#main .projects {
+  float: right;
+  margin-right: 10px;
 }
