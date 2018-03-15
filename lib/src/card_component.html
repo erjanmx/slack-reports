@@ -3,5 +3,9 @@
         <span [innerHtml]="card.title"></span>
         <material-icon (click)="deleteCard()" size="medium" light="light" icon="cancel"></material-icon>
     </div>
-    <input (blur)="cancelEditCard()" [style.display]="editingCard ? '' : 'none'">
+    <textarea
+            [style.display]="editingCard ? '' : 'none' "
+            (keyup.enter)="updateCard()"
+            (blur)="cancelEditCard()"
+            [(ngModel)]="card.title"></textarea>
 </li>

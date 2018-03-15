@@ -4,7 +4,8 @@
     </div>
     <ul class="card-list">
         <li *ngFor="let card of cards">
-            <emx-card (cardRemovedEvent)="deleteCard(card)" [card]="card"></emx-card>
+            <emx-card [card]="card" (cardUpdatedEvent)="updateCard(card)" (cardRemovedEvent)="deleteCard(card)">
+            </emx-card>
         </li>
     </ul>
     <div class="add-card" (click)="enableAddCard();" >

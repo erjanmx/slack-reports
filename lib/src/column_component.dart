@@ -35,4 +35,9 @@ class ColumnComponent {
   void deleteCard(Card card) {
     this.cards.remove(card);
   }
+
+  void updateCard(Card card) {
+    print('updated');
+    this.cards.add(card);
+  }
 }
