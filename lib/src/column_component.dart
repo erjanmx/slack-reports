@@ -20,6 +20,9 @@ class ColumnComponent {
   @Input()
   List<Card> cards;
 
+  @Input()
+  List<Card> projects;
+
   bool addingCard = false;
 
   final StreamController _projectRemovedEvent = new StreamController<Card>();
