@@ -53,7 +53,6 @@ class ColumnComponent {
   }
 
   void updateCard(Card card) {
-    // we might not need this
-    this.cards[card.id] = card;
+    card.title = card.title.trim();
   }
 }
