@@ -4,6 +4,7 @@ import 'package:angular/angular.dart';
 import 'package:slack_reports/src/card.dart';
 import 'package:angular_forms/angular_forms.dart';
 import 'package:angular_components/angular_components.dart';
+import 'dart:html';
 
 @Component(
   selector: 'emx-card',
@@ -31,8 +32,8 @@ class CardComponent {
   @Output()
   Stream<Card> get cardAttachProjectEvent => _cardAttachProjectEvent.stream;
 
-  List<String> colors = ['#61bd4f', '#f2d600', '#ffab4a', '#eb5a46',
-    '#c377e0 ', '#0079bf', '#0079bf', '#00c2e0', '#51e898', '#ff80ce',
+  List<String> colors = ['#00FFFF', '#5F9EA0', '#FF8C00', '#FF1493',
+    '#228B22 ', '#20B2AA', '#9370DB', '#C71585', '#FFA500', '#4169E1',
   ];
 
   bool editingCard = false;
@@ -44,6 +45,8 @@ class CardComponent {
 
   void editCard() {
     this.editingCard = true;
+
+    new Future.delayed(const Duration(milliseconds: 50), () => querySelector('#edit-${this.card.id}').focus());
   }
 
   void updateCard() {

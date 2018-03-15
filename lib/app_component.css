@@ -18,8 +18,12 @@
 
 textarea {
     width: 825px;
-    height: 40%;
+    height: 38%;
     margin-left: 10px;
+    font-size: 14px;
+    background-color: #FFF;
+    border-radius: 3px;
+    border-color: aliceblue;
 }
 
 h2 {

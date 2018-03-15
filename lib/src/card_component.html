@@ -12,6 +12,7 @@
         </div>
     </div>
     <textarea
+            id="edit-{{ card.id }}"
             [style.display]="editingCard ? '' : 'none' "
             (keyup.enter)="updateCard()"
             (blur)="cancelEditCard()"
