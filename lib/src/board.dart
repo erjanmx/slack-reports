@@ -5,17 +5,18 @@ class Board {
   List<Column> columns = [];
   List<Card> cards = [];
 
+  Map<int, String> statuses = {
+    1: '',
+    2: 'В ПРОЦЕССЕ',
+    3: 'СДЕЛАНО',
+  };
+
   @override
   String toString() {
     String output = '';
-    this.columns.forEach((Column column) {
-      output += column.name + '\n';
 
-      this.cards.where((Card card) => (card.columnId == column.id)).toList().forEach((Card card) {
-        output += card.title + '\n';
-      });
-
-      output += '\n';
+    this.cards.forEach((Card card) {
+      output += card.title + ' - ' + this.statuses[card.columnId] + '\n';
     });
 
     return output;
