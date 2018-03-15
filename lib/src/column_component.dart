@@ -17,9 +17,15 @@ class ColumnComponent {
   Column column;
 
   @Input()
-  List<Card> cards = [new Card(1, 'New card', 2, 1)];
+  List<Card> cards;
 
   bool addingCard = false;
+
+  List<Card> filteredCards() {
+    return this.cards.where(
+      (Card card) => (card.columnId == this.column.id)
+    ).toList();
+  }
 
   void addCard(String title) {
     if (!title.trim().isEmpty) {
@@ -37,7 +43,7 @@ class ColumnComponent {
   }
 
   void updateCard(Card card) {
-    print('updated');
-    this.cards.add(card);
+    // we might not need this
+    this.cards[card.id] = card;
   }
 }
