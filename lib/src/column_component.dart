@@ -1,3 +1,4 @@
+import 'dart:html';
 import 'dart:async';
 import 'package:angular/angular.dart';
 
@@ -54,6 +55,8 @@ class ColumnComponent {
 
   void enableAddCard() {
     this.addingCard = true;
+
+    new Future.delayed(const Duration(milliseconds: 50), () => querySelector('#add-${this.column.id}').focus());
   }
 
   void deleteCard(Card card) {

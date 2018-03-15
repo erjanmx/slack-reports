@@ -17,8 +17,10 @@
                 Add a card...
             </span>
 
-        <input  #card
+        <input  id="add-{{ column.id }}"
+                #card
                 [style.display]="addingCard ? '' : 'none' "
+                (blur)="addCard(card.value); card.value=''"
                 (keyup.enter)="addCard(card.value); card.value=''"
                 />
     </div>
