@@ -27,16 +27,19 @@ class ColumnComponent {
 
   final StreamController _projectRemovedEvent = new StreamController<Card>();
   final StreamController _addCardEvent = new StreamController<Card>();
+  final StreamController _projectAttachedEvent = new StreamController<Card>();
 
   @Output()
   Stream<Card> get projectRemovedEvent => _projectRemovedEvent.stream;
+  @Output()
+  Stream<Card> get projectAttachedEvent => _projectAttachedEvent.stream;
   @Output()
   Stream<Card> get addCardEvent => _addCardEvent.stream;
 
 
   List<Card> filteredCards() {
     return this.cards.where(
-      (Card card) => (card.columnId == this.column.id)
+      (Card card) => (card.columnId == this.column.id && card.id != 0)
     ).toList();
   }
 
@@ -63,5 +66,9 @@ class ColumnComponent {
 
   void updateCard(Card card) {
     card.title = card.title.trim();
+  }
+
+  void attachProject(Card card) {
+    _projectAttachedEvent.add(card);
   }
 }

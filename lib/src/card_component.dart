@@ -22,11 +22,14 @@ class CardComponent {
 
   final StreamController _cardRemovedEvent = new StreamController<Card>();
   final StreamController _cardUpdatedEvent = new StreamController<Card>();
+  final StreamController _cardAttachProjectEvent = new StreamController<Card>();
 
   @Output()
   Stream<Card> get cardRemovedEvent => _cardRemovedEvent.stream;
   @Output()
   Stream<Card> get cardUpdatedEvent => _cardUpdatedEvent.stream;
+  @Output()
+  Stream<Card> get cardAttachProjectEvent => _cardAttachProjectEvent.stream;
 
   List<String> colors = ['#61bd4f', '#f2d600', '#ffab4a', '#eb5a46',
     '#c377e0 ', '#0079bf', '#0079bf', '#00c2e0', '#51e898', '#ff80ce',
@@ -58,5 +61,20 @@ class CardComponent {
     }
 
     return this.colors[this.card.order];
+  }
+
+  String getCardColor() {
+    if (this.card.projectId == 0) {
+      return '';
+    }
+
+    return this.colors[this.card.projectId];
+  }
+
+  void attachProject(int projectId) {
+    this.card.projectId = projectId;
+
+    _cardAttachProjectEvent.add(this.card);
+    this.showingMenu = false;
   }
 }

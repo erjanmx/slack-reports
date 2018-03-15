@@ -5,7 +5,10 @@
     <ul class="card-list">
         <li *ngFor="let card of filteredCards()">
             <emx-card [card]="card" [projects]="projects"
-                      (cardUpdatedEvent)="updateCard(card)" (cardRemovedEvent)="deleteCard(card)">
+                      (cardUpdatedEvent)="updateCard(card)"
+                      (cardRemovedEvent)="deleteCard(card)"
+                      (cardAttachProjectEvent)="attachProject($event)"
+            >
             </emx-card>
         </li>
     </ul>
