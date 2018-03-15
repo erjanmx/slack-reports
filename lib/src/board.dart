@@ -34,7 +34,7 @@ class Board {
 
     this.projects.forEach((Card project) {
 
-      List<Card> projectCards = this.cards.where((Card card) => (card.projectId == project.id)).toList();
+      List<Card> projectCards = this.cards.where((Card card) => (card.projectId == project.id && project.id != 0)).toList();
 
       if (projectCards.isNotEmpty) {
         output += '\n- ${project.title}\n';
@@ -67,6 +67,8 @@ class Board {
 
   @override
   String toString() {
+    this.cards.sort((a, b) => -a.columnId.compareTo(b.columnId));
+
     return (this.projectCards() + this.nonProjectCards()).trim();
   }
 }
