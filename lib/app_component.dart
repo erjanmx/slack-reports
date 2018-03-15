@@ -27,25 +27,26 @@ class AppComponent {
     ];
 
     this.board.cards = [
-      new Card(1, 'Test-1', 1, 0, 1),
-      new Card(2, 'Test-2', 1, 0, 1),
-      new Card(3, 'Test-3', 2, 2, 1),
-      new Card(4, 'Test-4', 2, 2, 1),
-      new Card(5, 'Test-5', 3, 0, 1),
-      new Card(6, 'Test-6', 3, 0, 0),
-      new Card(7, 'Test-7', 2, 0, 0),
-      new Card(8, 'Test-8', 2, 0, 0),
-      new Card(9, 'Test-9', 2, 0, 0),
-      new Card(10, 'Test-10', 3, 1, 0),
-      new Card(11, 'Test-11', 1, 2, 0),
-      new Card(12, 'Test-12', 2, 1, 0),
-      new Card(13, 'Test-13', 3, 1, 0),
+      new Card(1, 'Task-1', 1, 0, 1),
+      new Card(2, 'Task-2', 1, 0, 1),
+      new Card(3, 'Task-3', 2, 2, 1),
+      new Card(4, 'Task-4', 2, 2, 1),
+      new Card(5, 'Task-5', 3, 0, 1),
+      new Card(6, 'Task-6', 3, 0, 2),
+      new Card(7, 'Task-7', 2, 0, 2),
+      new Card(8, 'Task-8', 2, 0, 2),
+      new Card(9, 'Task-9', 2, 0, 3),
+      new Card(10, 'Task-10', 3, 1, 3),
+      new Card(11, 'Task-11', 1, 2, 0),
+      new Card(12, 'Task-12', 2, 1, 0),
+      new Card(13, 'Task-13', 3, 1, 0),
     ];
 
     this.board.projects = [
       new Card(0, '-', 0, 0, 0),
       new Card(1, 'Project-1', 0, 1, 0),
-      new Card(2, 'Project-2', 0, 2, 1),
+      new Card(2, 'Project-2', 0, 2, 0),
+      new Card(2, 'Project-3', 0, 3, 0),
     ];
   }
 
