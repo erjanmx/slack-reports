@@ -53,7 +53,7 @@ class CardComponent {
   }
 
   String getColor() {
-    if (this.card.columnId != 0) {
+    if (this.card.columnId != 0 || this.card.order > this.colors.length) {
       return '';
     }
 

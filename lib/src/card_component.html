@@ -2,11 +2,11 @@
     <div [style.display]="editingCard ? 'none' : ''" >
         <span [innerHtml]="card.title"></span>
 
-        <div class="dropdown">
+        <div *ngIf="card.columnId!=0" class="dropdown">
             <material-icon size="medium" light="light" icon="view_headline" (click)="showingMenu=true;"></material-icon>
 
             <div [class.show]="showingMenu" class="dropdown-content">
-                <a *ngFor="let project of projects">{{ project.title }}</a>
+                <a *ngFor="let project of projects" (click)="showingMenu=false;">{{ project.title }}</a>
             </div>
         </div>
         <material-icon (click)="deleteCard()" size="medium" light="light" icon="cancel"></material-icon>
