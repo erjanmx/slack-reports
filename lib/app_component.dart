@@ -1,11 +1,14 @@
+import 'dart:html';
 import 'package:angular/angular.dart';
 
+import 'package:slack_reports/src/uuid.dart';
 import 'package:slack_reports/src/board.dart';
 import 'package:slack_reports/src/card.dart';
 import 'package:slack_reports/src/column.dart';
 import 'package:slack_reports/src/column_component.dart';
 import 'package:angular_components/angular_components.dart';
 
+import 'dart:convert' show JSON;
 
 @Component(
   selector: 'my-app',
@@ -17,7 +20,51 @@ import 'package:angular_components/angular_components.dart';
 class AppComponent {
   final title = 'Dashboard';
 
+  final String version = '0.1.0';
+
   Board board = new Board();
+
+  void initLocalStorage() {
+    var jsonList = window.localStorage['slack-reports-${this.version}'];
+    try {
+      Map<String, List> board = JSON.decode(jsonList);
+
+      board['cards'].forEach((c) {
+        this.board.cards.add(new Card(c['id'], c['title'], c['order'], c['projectId']));
+      });
+      board['projects'].forEach((c) {
+        this.board.projects.add(new Card(c['id'], c['title'], c['order'], c['projectId']));
+      });
+
+    } catch (e) {
+
+      print(e);
+      this.board.cards = [
+        new Card(uuid(), 'Task-1', 1, 0, 1),
+        new Card(uuid(), 'Task-2', 2, 1, 1),
+        new Card(uuid(), 'Task-3', 1, 0, 2),
+        new Card(uuid(), 'Task-4', 2, 1, 2),
+        new Card(uuid(), 'Task-5', 3, 0, 0),
+      ];
+
+      this.board.projects = [
+        new Card(uuid(), '-', 0, 0, 0),
+        new Card(uuid(), 'Project-1', 0, 1, 0),
+        new Card(uuid(), 'Project-2', 0, 2, 0),
+        new Card(uuid(), 'Project-3', 0, 3, 0),
+      ];
+    }
+  }
+
+  void save() {
+    Map<String, List<Card>> list = {
+      'cards': this.board.cards,
+      'projects': this.board.projects,
+    };
+
+    window.localStorage['slack-reports-${this.version}'] = JSON.encode(list);
+  }
+
 
   AppComponent() {
     this.board.columns = [
@@ -26,28 +73,7 @@ class AppComponent {
       new Column(3, 'Done'),
     ];
 
-    this.board.cards = [
-      new Card(1, 'Task-1', 1, 0, 1),
-      new Card(2, 'Task-2', 1, 0, 1),
-      new Card(3, 'Task-3', 2, 2, 1),
-      new Card(4, 'Task-4', 2, 2, 1),
-      new Card(5, 'Task-5', 3, 0, 1),
-      new Card(6, 'Task-6', 3, 0, 2),
-      new Card(7, 'Task-7', 2, 0, 2),
-      new Card(8, 'Task-8', 2, 0, 2),
-      new Card(9, 'Task-9', 2, 0, 3),
-      new Card(10, 'Task-10', 3, 1, 3),
-      new Card(11, 'Task-11', 1, 2, 0),
-      new Card(12, 'Task-12', 2, 1, 0),
-      new Card(13, 'Task-13', 3, 1, 0),
-    ];
-
-    this.board.projects = [
-      new Card(0, '-', 0, 0, 0),
-      new Card(1, 'Project-1', 0, 1, 0),
-      new Card(2, 'Project-2', 0, 2, 0),
-      new Card(3, 'Project-3', 0, 3, 0),
-    ];
+    this.initLocalStorage();
   }
 
   deleteProject(Card card) {
@@ -75,5 +101,7 @@ class AppComponent {
       }
       return c;
     }).toList();
+
+    this.save();
   }
 }

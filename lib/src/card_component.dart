@@ -59,17 +59,17 @@ class CardComponent {
   }
 
   String getColor() {
-    if (this.card.columnId != 0 || this.card.order > this.colors.length) {
+//    if (this.card.columnId != 0 || this.card.order > this.colors.length) {
       return '';
-    }
+//    }
 
     return this.colors[this.card.order];
   }
 
   String getCardColor() {
-    if (this.card.projectId == 0) {
+//    if (this.card.projectId == 0 || this.card.projectId > this.colors.length) {
       return '';
-    }
+//    }
 
     return this.colors[this.card.projectId];
   }
