@@ -26,16 +26,16 @@ class ColumnComponent {
 
   bool addingCard = false;
 
-  final StreamController _projectRemovedEvent = new StreamController<Card>();
   final StreamController _addCardEvent = new StreamController<Card>();
+  final StreamController _projectRemovedEvent = new StreamController<Card>();
   final StreamController _projectAttachedEvent = new StreamController<Card>();
 
+  @Output()
+  Stream<Card> get addCardEvent => _addCardEvent.stream;
   @Output()
   Stream<Card> get projectRemovedEvent => _projectRemovedEvent.stream;
   @Output()
   Stream<Card> get projectAttachedEvent => _projectAttachedEvent.stream;
-  @Output()
-  Stream<Card> get addCardEvent => _addCardEvent.stream;
 
 
   List<Card> filteredCards() {

@@ -46,7 +46,7 @@ class AppComponent {
       new Card(0, '-', 0, 0, 0),
       new Card(1, 'Project-1', 0, 1, 0),
       new Card(2, 'Project-2', 0, 2, 0),
-      new Card(2, 'Project-3', 0, 3, 0),
+      new Card(3, 'Project-3', 0, 3, 0),
     ];
   }
 
