@@ -2,6 +2,7 @@ import 'dart:html';
 import 'dart:async';
 import 'package:angular/angular.dart';
 
+import 'package:slack_reports/src/uuid.dart';
 import 'package:slack_reports/src/card.dart';
 import 'package:slack_reports/src/column.dart';
 import 'package:slack_reports/src/card_component.dart';
@@ -46,9 +47,7 @@ class ColumnComponent {
 
   void addCard(String title) {
     if (!title.trim().isEmpty) {
-      int i = (this.column.id != 0) ? this.projects.length : this.cards.length;
-
-      _addCardEvent.add(new Card('${i + 1}', title, this.column.id, 999, 0));
+      _addCardEvent.add(new Card(uuid(), title, this.column.id, 999, ''));
     }
     this.addingCard = false;
   }

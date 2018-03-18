@@ -29,29 +29,23 @@ class AppComponent {
     try {
       Map<String, List> board = JSON.decode(jsonList);
 
-      board['cards'].forEach((c) {
-        this.board.cards.add(new Card(c['id'], c['title'], c['order'], c['projectId']));
-      });
-      board['projects'].forEach((c) {
-        this.board.projects.add(new Card(c['id'], c['title'], c['order'], c['projectId']));
-      });
-
+      this.board.cards = board['cards'].map((item) => new Card.fromJson(item)).toList();
+      this.board.projects = board['projects'].map((item) => new Card.fromJson(item)).toList();
     } catch (e) {
-
       print(e);
       this.board.cards = [
-        new Card(uuid(), 'Task-1', 1, 0, 1),
-        new Card(uuid(), 'Task-2', 2, 1, 1),
-        new Card(uuid(), 'Task-3', 1, 0, 2),
-        new Card(uuid(), 'Task-4', 2, 1, 2),
-        new Card(uuid(), 'Task-5', 3, 0, 0),
+        new Card(uuid(), 'Task-1', 1, 0, ''),
+        new Card(uuid(), 'Task-2', 2, 1, ''),
+        new Card(uuid(), 'Task-3', 1, 0, ''),
+        new Card(uuid(), 'Task-4', 2, 1, ''),
+        new Card(uuid(), 'Task-5', 3, 0, ''),
       ];
 
       this.board.projects = [
-        new Card(uuid(), '-', 0, 0, 0),
-        new Card(uuid(), 'Project-1', 0, 1, 0),
-        new Card(uuid(), 'Project-2', 0, 2, 0),
-        new Card(uuid(), 'Project-3', 0, 3, 0),
+        new Card(uuid(), '-', 0, 0, ''),
+        new Card(uuid(), 'Project-1', 0, 1, ''),
+        new Card(uuid(), 'Project-2', 0, 2, ''),
+        new Card(uuid(), 'Project-3', 0, 3, ''),
       ];
     }
   }
@@ -79,7 +73,7 @@ class AppComponent {
   deleteProject(Card card) {
     this.board.cards = this.board.cards.map((Card c) {
       if (c.projectId == card.id) {
-        c.projectId = 0;
+        c.projectId = '';
       }
      return c;
     }).toList();
@@ -87,7 +81,7 @@ class AppComponent {
 
   void addCard(Card card) {
     if (card.columnId == 0) {
-      card.order = this.board.projects.length + 1;
+//      card.order = this.board.projects.length + 1;
       this.board.projects.add(card);
     } else {
       this.board.cards.add(card);

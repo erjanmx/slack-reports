@@ -71,10 +71,10 @@ class CardComponent {
       return '';
 //    }
 
-    return this.colors[this.card.projectId];
+//    return this.colors[this.card.projectId];
   }
 
-  void attachProject(int projectId) {
+  void attachProject(String projectId) {
     this.card.projectId = projectId;
 
     _cardAttachProjectEvent.add(this.card);
