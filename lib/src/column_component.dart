@@ -41,7 +41,7 @@ class ColumnComponent {
 
   List<Card> filteredCards() {
     return this.cards.where(
-      (Card card) => (card.columnId == this.column.id && card.id != 0)
+      (Card card) => (card.columnId == this.column.id && card.id.isNotEmpty)
     ).toList();
   }
 

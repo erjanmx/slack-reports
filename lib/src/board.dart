@@ -34,7 +34,7 @@ class Board {
 
     this.projects.forEach((Card project) {
 
-      List<Card> projectCards = this.cards.where((Card card) => (card.projectId == project.id && project.id != 0)).toList();
+      List<Card> projectCards = this.cards.where((Card card) => (card.projectId == project.id && project.id.isNotEmpty)).toList();
 
       if (projectCards.isNotEmpty) {
         output += '\n- ${project.title}\n';
@@ -52,7 +52,7 @@ class Board {
   String nonProjectCards() {
     String output = '';
 
-    List<Card> nonProjectCards = this.cards.where((Card card) => (card.projectId == 0)).toList();
+    List<Card> nonProjectCards = this.cards.where((Card card) => (card.projectId.isEmpty)).toList();
 
     if (nonProjectCards.isNotEmpty) {
       output += '\n';

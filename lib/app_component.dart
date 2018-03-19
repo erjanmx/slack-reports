@@ -42,7 +42,7 @@ class AppComponent {
       ];
 
       this.board.projects = [
-        new Card(uuid(), '-', 0, 0, ''),
+        new Card('', '-', 0, 0, ''),
         new Card(uuid(), 'Project-1', 0, 1, ''),
         new Card(uuid(), 'Project-2', 0, 2, ''),
         new Card(uuid(), 'Project-3', 0, 3, ''),
@@ -81,7 +81,6 @@ class AppComponent {
 
   void addCard(Card card) {
     if (card.columnId == 0) {
-//      card.order = this.board.projects.length + 1;
       this.board.projects.add(card);
     } else {
       this.board.cards.add(card);
