@@ -2,6 +2,7 @@ import 'dart:html';
 import 'dart:async';
 import 'package:angular/angular.dart';
 
+
 import 'package:slack_reports/src/card.dart';
 import 'package:angular_forms/angular_forms.dart';
 import 'package:angular_components/angular_components.dart';
@@ -81,4 +82,5 @@ class CardComponent {
     _cardAttachProjectEvent.add(this.card);
     this.showingMenu = false;
   }
+
 }

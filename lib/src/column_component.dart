@@ -40,9 +40,13 @@ class ColumnComponent {
 
 
   List<Card> filteredCards() {
-    return this.cards.where(
+    List<Card> cards = this.cards.where(
       (Card card) => (card.columnId == this.column.id && card.id.isNotEmpty)
     ).toList();
+
+    cards.sort((a, b) => a.order.compareTo(b.order));
+
+    return cards;
   }
 
   void addCard(String title) {
