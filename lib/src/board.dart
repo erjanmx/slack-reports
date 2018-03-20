@@ -34,9 +34,11 @@ class Board {
 
     this.projects.forEach((Card project) {
 
-      List<Card> projectCards = this.cards.where((Card card) => (card.projectId == project.id && project.id != 0)).toList();
+      List<Card> projectCards = this.cards.where((Card card) => (card.projectId == project.id && project.id.isNotEmpty)).toList();
 
       if (projectCards.isNotEmpty) {
+        projectCards.sort((a, b) => a.order.compareTo(b.order));
+
         output += '\n- ${project.title}\n';
 
         projectCards.forEach((Card card) {
@@ -52,9 +54,11 @@ class Board {
   String nonProjectCards() {
     String output = '';
 
-    List<Card> nonProjectCards = this.cards.where((Card card) => (card.projectId == 0)).toList();
+    List<Card> nonProjectCards = this.cards.where((Card card) => (card.projectId.isEmpty)).toList();
 
     if (nonProjectCards.isNotEmpty) {
+      nonProjectCards.sort((a, b) => a.order.compareTo(b.order));
+
       output += '\n';
 
       nonProjectCards.forEach((Card card) {
@@ -68,7 +72,16 @@ class Board {
   @override
   String toString() {
     this.cards.sort((a, b) => -a.columnId.compareTo(b.columnId));
+    this.projects.sort((a, b) => a.order.compareTo(b.order));
 
     return (this.projectCards() + this.nonProjectCards()).trim();
+  }
+
+  Card getCardById(String id) {
+    return this.cards.where((Card card) => card.id == id).first;
+  }
+
+  Card getProjectById(String id) {
+    return this.projects.where((Card card) => card.id == id).first;
   }
 }

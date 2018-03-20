@@ -31,18 +31,19 @@ class ColumnComponent {
   final StreamController _projectRemovedEvent = new StreamController<Card>();
   final StreamController _projectAttachedEvent = new StreamController<Card>();
 
-  @Output()
-  Stream<Card> get addCardEvent => _addCardEvent.stream;
-  @Output()
-  Stream<Card> get projectRemovedEvent => _projectRemovedEvent.stream;
-  @Output()
-  Stream<Card> get projectAttachedEvent => _projectAttachedEvent.stream;
+  @Output() Stream<Card> get addCardEvent => _addCardEvent.stream;
+  @Output() Stream<Card> get projectRemovedEvent => _projectRemovedEvent.stream;
+  @Output() Stream<Card> get projectAttachedEvent => _projectAttachedEvent.stream;
 
 
   List<Card> filteredCards() {
-    return this.cards.where(
-      (Card card) => (card.columnId == this.column.id && card.id != 0)
+    List<Card> cards = this.cards.where(
+      (Card card) => (card.columnId == this.column.id && card.id.isNotEmpty)
     ).toList();
+
+    cards.sort((a, b) => a.order.compareTo(b.order));
+
+    return cards;
   }
 
   void addCard(String title) {
@@ -59,11 +60,7 @@ class ColumnComponent {
   }
 
   void deleteCard(Card card) {
-    if (card.columnId == 0) {
-      _projectRemovedEvent.add(card);
-    }
-
-    this.cards.remove(card);
+    _projectRemovedEvent.add(card);
   }
 
   void updateCard(Card card) {
@@ -72,5 +69,10 @@ class ColumnComponent {
 
   void attachProject(Card card) {
     _projectAttachedEvent.add(card);
+  }
+
+  bool isProject()
+  {
+    return this.column.id == 0;
   }
 }

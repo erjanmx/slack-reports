@@ -87,3 +87,20 @@ material-icon {
 .dropdown a:hover {background-color: #ddd}
 
 .show {display:block;}
+
+
+.dnd-dragging {
+    opacity: 0.5;
+}
+
+.dnd-over {
+    border-width: medium;
+    border-color: #ffa18f;
+    border-style: dashed;
+    background-color: white;
+    opacity: 1;
+}
+
+.dnd-over * {
+    display: none;
+}
