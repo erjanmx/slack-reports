@@ -1,4 +1,4 @@
-<li class="card" [style.background]="getColor()" [attr.card-id]="card.id">
+<li class="card" [class.task-card]="!isProject()" [class.project-card]="isProject()" [style.background]="getColor()" [attr.data-card-id]="card.id">
     <div [style.display]="editingCard ? 'none' : ''">
         <span [innerHtml]="card.title" (click)="editCard()"></span>
         <material-icon (click)="deleteCard()" size="medium" light="light" icon="cancel"></material-icon>

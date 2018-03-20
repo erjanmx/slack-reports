@@ -83,4 +83,7 @@ class CardComponent {
     this.showingMenu = false;
   }
 
+  bool isProject() {
+    return this.card.columnId == 0;
+  }
 }
