@@ -32,7 +32,6 @@ class AppComponent {
   void initLocalStorage() {
     var jsonList = window.localStorage['slack-reports-${this.version}'];
     try {
-      throw new Exception();
       Map<String, List> board = JSON.decode(jsonList);
 
       this.board.cards = board['cards'].map((item) => new Card.fromJson(item)).toList();
@@ -65,6 +64,12 @@ class AppComponent {
     window.localStorage['slack-reports-${this.version}'] = JSON.encode(list);
   }
 
+  void reload([bool s=true]) {
+    if (s) save();
+
+    initLocalStorage();
+    new Future.delayed(const Duration(milliseconds: 500), () => setupView());
+  }
 
   AppComponent() {
     this.board.columns = [
@@ -73,18 +78,24 @@ class AppComponent {
       new Column(3, 'Done'),
     ];
 
-    this.initLocalStorage();
-
-    new Future.delayed(const Duration(milliseconds: 500), () => setupView());
+    this.reload(false);
   }
 
   deleteProject(Card card) {
-    this.board.cards = this.board.cards.map((Card c) {
-      if (c.projectId == card.id) {
-        c.projectId = '';
-      }
-     return c;
-    }).toList();
+    if (card.columnId == 0) {
+      this.board.cards = this.board.cards.map((Card c) {
+        if (c.projectId == card.id) {
+          c.projectId = '';
+        }
+        return c;
+      }).toList();
+
+      this.board.projects.remove(card);
+    }
+
+    this.board.cards.remove(card);
+
+    this.reload();
   }
 
   void addCard(Card card) {
@@ -93,6 +104,8 @@ class AppComponent {
     } else {
       this.board.cards.add(card);
     }
+
+    this.reload();
   }
 
   void attachProject(Card card) {
@@ -103,61 +116,61 @@ class AppComponent {
       return c;
     }).toList();
 
-    this.save();
+    this.reload();
   }
 
-//  void initDraggable() {
-////      js.context.callMethod(r'$', ['#dialog']).callMethod('dialog');
-////      js.context.$("#dialog").dialog();
-//
-//    // Install same elements as draggable and dropzone.
-//    Draggable draggable = new Draggable(querySelectorAll('.sortable'),
-//        avatarHandler: new AvatarHandler.clone());
-//
-//    Dropzone dropzone = new Dropzone(querySelectorAll('.sortable'));
-//
-//    // Swap elements when dropped.
-//    dropzone.onDrop.listen((DropzoneEvent event) {
-//
-//      swapElements(event.draggableElement, event.dropzoneElement);
-//    });
-//  }
-
-  void swapElements(Element elm1, Element elm2) {
-//    Card card_1 = this.
-    this.board.cards.first.columnId = 2;
-    print(elm1.getAttribute('data-id'));
-    print(elm2.getAttribute('data-id'));
-
-//    new Future.delayed(const Duration(milliseconds: 500), () => initDraggable());
-//    var parent1 = elm1.parent;
-//    var next1   = elm1.nextElementSibling;
-//    var parent2 = elm2.parent;
-//    var next2   = elm2.nextElementSibling;
-//
-//    parent1.insertBefore(elm2, next1);
-//    parent2.insertBefore(elm1, next2);
-  }
-//
   setupView() {
-    var a = new Assortment(querySelector('.card-list'));
-    a.addElements(querySelectorAll('.card'));
+    var a = new Assortment(querySelector('.task-cards'));
+    a.addElements(querySelectorAll('.task-card'));
 
-//    a.onDragEnd.listen((AssortmentEvent event) {
-//      print('drag end enter ${event.enterElement}');
-//      print('drag end from ${event.fromElement}');
-//      print('drag end drag ${event.dragElement}');
-//    });
-    a.onDragEnter.listen((AssortmentEvent event) {
-      print('drag enter enter ${event.enterElement.parent.parent.parent.getAttribute('data-column-id')}');
-//      print('drag enter from ${event.fromElement}');
-//      print('drag enter drag ${event.dragElement}');
+    var p = new Assortment(querySelector('.project-cards'));
+    p.addElements(querySelectorAll('.project-card'));
+
+    a.onDragEnd.listen((AssortmentEvent event) {
+      List<Element> elements = querySelectorAll('.task-card');
+
+      int i = 0;
+      int c_id = 0;
+      Card card;
+      for (Element element in elements) {
+        String card_id = element.getAttribute('data-card-id');
+        int column_id = int.parse(element.parent.parent.parent.getAttribute('data-column-id'));
+
+        card = board.getCardById(card_id);
+
+        if (c_id != column_id) i = 0;
+
+        card.columnId = column_id;
+        card.order = i++;
+
+        c_id = column_id;
+      };
+
+      this.reload();
     });
-//    a.onDragStart.listen((AssortmentEvent event) {
-//      print('drag start enter ${event.enterElement}');
-//      print('drag start from ${event.fromElement}');
-//      print('drag start drag ${event.dragElement}');
-//    });
+
+    p.onDragEnd.listen((AssortmentEvent event) {
+      List<Element> elements = querySelectorAll('.project-card');
+
+      int i = 0;
+      int c_id = 0;
+      Card card;
+      for (Element element in elements) {
+        String card_id = element.getAttribute('data-card-id');
+        int column_id = int.parse(element.parent.parent.parent.getAttribute('data-column-id'));
+
+        card = board.getProjectById(card_id);
+
+        if (c_id != column_id) i = 0;
+
+        card.columnId = column_id;
+        card.order = i++;
+
+        c_id = column_id;
+      };
+
+      this.reload();
+    });
   }
 
 }

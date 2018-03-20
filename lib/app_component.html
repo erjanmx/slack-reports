@@ -2,9 +2,10 @@
 
 <section id="main">
     <div *ngFor="let column of board.columns">
-        <emx-column [column]="column" [cards]="board.cards" [projects]="board.projects"
-                    (addCardEvent)="addCard($event)"
-                    (projectAttachedEvent)="attachProject($event)"
+        <emx-column
+                [column]="column" [cards]="board.cards" [projects]="board.projects"
+                (addCardEvent)="addCard($event)" (projectAttachedEvent)="attachProject($event)"
+                (projectRemovedEvent)="deleteProject($event)"
         ></emx-column>
     </div>
     <div class="projects">
