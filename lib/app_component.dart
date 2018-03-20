@@ -10,9 +10,6 @@ import 'package:slack_reports/src/column_component.dart';
 import 'package:angular_components/angular_components.dart';
 
 import 'dart:convert' show JSON;
-//import 'package:js/js.dart' as js;
-//import 'package:dnd/dnd.dart';
-//import 'dart:js' as js;
 import 'package:assortment/assortment.dart';
 
 @Component(
