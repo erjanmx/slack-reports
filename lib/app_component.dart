@@ -10,7 +10,7 @@ import 'package:slack_reports/src/column_component.dart';
 import 'package:angular_components/angular_components.dart';
 
 import 'dart:convert' show JSON;
-import 'package:assortment/assortment.dart';
+import 'package:slack_reports/src/lib/assortment.dart';
 
 @Component(
   selector: 'my-app',
@@ -131,7 +131,7 @@ class AppComponent {
       Card card;
       for (Element element in elements) {
         String card_id = element.getAttribute('data-card-id');
-        int column_id = int.parse(element.parent.parent.parent.getAttribute('data-column-id'));
+        int column_id = int.parse(element.parent.getAttribute('data-column-id'));
 
         card = board.getCardById(card_id);
 
@@ -154,7 +154,7 @@ class AppComponent {
       Card card;
       for (Element element in elements) {
         String card_id = element.getAttribute('data-card-id');
-        int column_id = int.parse(element.parent.parent.parent.getAttribute('data-column-id'));
+        int column_id = int.parse(element.parent.getAttribute('data-column-id'));
 
         card = board.getProjectById(card_id);
 
