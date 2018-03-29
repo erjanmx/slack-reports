@@ -2,10 +2,9 @@ import 'dart:html';
 import 'dart:async';
 import 'package:angular/angular.dart';
 
-import 'package:slack_reports/src/uuid.dart';
-import 'package:slack_reports/src/card.dart';
-import 'package:slack_reports/src/column.dart';
-import 'package:slack_reports/src/card_component.dart';
+import 'package:slack_reports/src/card/card.dart';
+import 'package:slack_reports/src/column/column.dart';
+import 'package:slack_reports/src/card/card_component.dart';
 
 @Component(
   selector: 'emx-column',
@@ -16,25 +15,25 @@ import 'package:slack_reports/src/card_component.dart';
 
 
 class ColumnComponent {
-  @Input()
-  Column column;
-
-  @Input()
-  List<Card> cards;
-
-  @Input()
-  List<Card> projects;
-
   bool addingCard = false;
 
+  @Input() Column column;
+  @Input() List<Card> cards;
+  @Input() List<Card> projects;
+
   final StreamController _addCardEvent = new StreamController<Card>();
-  final StreamController _projectRemovedEvent = new StreamController<Card>();
-  final StreamController _projectAttachedEvent = new StreamController<Card>();
+  final StreamController _deleteCardEvent = new StreamController<Card>();
+  final StreamController _updateCardEvent = new StreamController<Card>();
+  final StreamController _attachProjectEvent = new StreamController<Card>();
 
   @Output() Stream<Card> get addCardEvent => _addCardEvent.stream;
-  @Output() Stream<Card> get projectRemovedEvent => _projectRemovedEvent.stream;
-  @Output() Stream<Card> get projectAttachedEvent => _projectAttachedEvent.stream;
+  @Output() Stream<Card> get deleteCardEvent => _deleteCardEvent.stream;
+  @Output() Stream<Card> get updateCardEvent => _updateCardEvent.stream;
+  @Output() Stream<Card> get attachProjectEvent => _attachProjectEvent.stream;
 
+  deleteCard(Card card) => _deleteCardEvent.add(card);
+  updateCard(Card card) => _updateCardEvent.add(card);
+  attachProject(Card card) => _attachProjectEvent.add(card);
 
   List<Card> filteredCards() {
     List<Card> cards = this.cards.where(
@@ -48,7 +47,7 @@ class ColumnComponent {
 
   void addCard(String title) {
     if (!title.trim().isEmpty) {
-      _addCardEvent.add(new Card(uuid(), title, this.column.id, 999, ''));
+      _addCardEvent.add(new Card.fromForm(title, this.column.id));
     }
     this.addingCard = false;
   }
@@ -57,22 +56,5 @@ class ColumnComponent {
     this.addingCard = true;
 
     new Future.delayed(const Duration(milliseconds: 50), () => querySelector('#add-${this.column.id}').focus());
-  }
-
-  void deleteCard(Card card) {
-    _projectRemovedEvent.add(card);
-  }
-
-  void updateCard(Card card) {
-    card.title = card.title.trim();
-  }
-
-  void attachProject(Card card) {
-    _projectAttachedEvent.add(card);
-  }
-
-  bool isProject()
-  {
-    return this.column.id == 0;
   }
 }
