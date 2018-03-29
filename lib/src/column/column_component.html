@@ -2,8 +2,8 @@
     <div class="column-header">
         <h4 [innerHtml]="column.name"></h4>
     </div>
-    <ul class="card-list" [class.task-cards]="!isProject()" [class.project-cards]="isProject()" [attr.data-column-id]="column.id">
-        <li *ngFor="let card of filteredCards()" [class.task-card]="!isProject()" [class.project-card]="isProject()" [attr.data-card-id]="card.id">
+    <ul class="card-list" [class.task-cards]="!column.isProject()" [class.project-cards]="column.isProject()" [attr.data-column-id]="column.id">
+        <li *ngFor="let card of filteredCards()" [class.task-card]="!card.isProject()" [class.project-card]="card.isProject()" [attr.data-card-id]="card.id">
             <emx-card [card]="card" [projects]="projects"
                       (cardUpdatedEvent)="updateCard(card)"
                       (cardRemovedEvent)="deleteCard(card)"
