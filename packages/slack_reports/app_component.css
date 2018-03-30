@@ -1,0 +1,36 @@
+#main {
+    min-width: 100%;
+    min-height: 50%;
+    overflow: hidden;
+}
+
+.board-title {
+    margin-left: 18px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.board-title span {
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+}
+
+textarea {
+    width: 825px;
+    height: 38%;
+    margin-left: 10px;
+    font-size: 15px;
+    background-color: #FFF;
+    border-radius: 3px;
+    border-color: aliceblue;
+}
+
+h2 {
+    margin-left: 10px;
+}
+
+.toggle {
+    margin-left: 10px;
+    color: white;
+}

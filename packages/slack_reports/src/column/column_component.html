@@ -1,0 +1,27 @@
+<div class="column" [class.task-cards]="!column.isProject()" [class.project-cards]="column.isProject()">
+    <div class="column-header">
+        <h4 [innerHtml]="column.name"></h4>
+    </div>
+    <ul class="card-list" [attr.data-column-id]="column.id">
+        <li *ngFor="let card of filteredCards()" [class.task-card]="!card.isProject()" [class.project-card]="card.isProject()" [attr.data-card-id]="card.id">
+            <emx-card [card]="card" [projects]="projects"
+                      (cardUpdatedEvent)="updateCard(card)"
+                      (cardRemovedEvent)="deleteCard(card)"
+                      (cardAttachProjectEvent)="attachProject($event)"
+            >
+            </emx-card>
+        </li>
+    </ul>
+    <div class="add-card" (click)="enableAddCard();" >
+            <span [style.display]="addingCard ? 'none' : ''" >
+                Add a card...
+            </span>
+
+        <input  id="add-{{ column.id }}"
+                #card
+                [style.display]="addingCard ? '' : 'none' "
+                (blur)="addCard(card.value); card.value=''"
+                (keyup.enter)="addCard(card.value); card.value=''"
+                />
+    </div>
+</div>

@@ -1,0 +1,21 @@
+<h2>{{ title }}</h2>
+
+<section id="main">
+    <div *ngFor="let column of board.columns">
+        <emx-column
+                [column]="column" [cards]="board.cards" [projects]="board.projects"
+                (addCardEvent)="addCard($event)" (attachProjectEvent)="reload()"
+                (deleteCardEvent)="deleteCard($event)" (updateCardEvent)="reload()"
+        ></emx-column>
+    </div>
+    <div class="projects">
+        <emx-column [column]="board.projectColumn" [cards]="board.projects"
+                    (addCardEvent)="addCard($event)" (deleteCardEvent)="deleteCard($event)"
+                    (updateCardEvent)="reload()"
+        ></emx-column>
+    </div>
+</section>
+<div class="toggle">
+    <material-toggle [disabled]="false" [(checked)]="board.eveningReport" label="Evening report"></material-toggle>
+</div>
+<textarea>{{ board }}</textarea>
