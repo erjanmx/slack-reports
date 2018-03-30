@@ -17,8 +17,6 @@ class CardComponent {
   bool editingCard = false;
   bool showingMenu = false;
 
-
-
   final StreamController _cardRemovedEvent = new StreamController<Card>();
   final StreamController _cardUpdatedEvent = new StreamController<Card>();
   final StreamController _projectAttachEvent = new StreamController<Card>();

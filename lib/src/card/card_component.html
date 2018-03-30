@@ -7,7 +7,9 @@
             <material-icon size="medium" light="light" icon="view_headline" [style.background]="card.projectId" (click)="showingMenu=true;"></material-icon>
 
             <div [class.show]="showingMenu" class="dropdown-content">
-                <a *ngFor="let project of projects" (click)="attachProject(project.id)">{{ project.title }}</a>
+                <select size="5">
+                    <option *ngFor="let project of projects" (click)="attachProject(project.id)">{{ project.title }}</option>
+                </select>
             </div>
         </div>
     </div>

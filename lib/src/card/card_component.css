@@ -71,10 +71,10 @@ material-icon {
     display: none;
     position: absolute;
     background-color: #f1f1f1;
-    min-width: 250px;
+    min-width: 150px;
     overflow: auto;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
+    z-index: 10 !important;
 }
 
 .dropdown-content a {
@@ -103,4 +103,17 @@ material-icon {
 
 .dnd-over * {
     display: none;
+}
+
+select {
+    display: block;
+    width: 100%;
+    padding: 12px 4px;
+    font-size: 20px;
+    line-height: 1.6;
+    color: #555555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccd0d2;
+    border-radius: 4px;
 }
