@@ -20,6 +20,9 @@ import 'package:angular_components/angular_components.dart';
 class AppComponent {
   Board board;
 
+  Assortment taskAssortment;
+  Assortment projectAssortment;
+
   final String title = 'Dashboard';
   final String version = '0.1.0';
 
@@ -54,48 +57,44 @@ class AppComponent {
   }
 
   setupView() {
-    var a = new Assortment(querySelector('.task-cards'));
-    a.addElements(querySelectorAll('.task-card'));
+    taskAssortment = new Assortment(
+        querySelectorAll('.task-cards'),
+        querySelectorAll('.task-card')
+    );
+    projectAssortment = new Assortment(
+        querySelectorAll('.project-cards'),
+        querySelectorAll('.project-card')
+    );
 
-    var p = new Assortment(querySelector('.project-cards'));
-    p.addElements(querySelectorAll('.project-card'));
+    taskAssortment.onDragEnd.listen((Element element) {
+      List<Element> taskCards = querySelectorAll('.task-card');
 
-    a.onDragEnd.listen((AssortmentEvent event) {
-      List<Element> elements = querySelectorAll('.task-card');
-
-      int i = 0;
       int c_id = 0;
-      Card card;
-      for (Element element in elements) {
-        String card_id = element.getAttribute('data-card-id');
-        int column_id = int.parse(element.parent.getAttribute('data-column-id'));
+      int order = 0;
+      for (Element taskCard in taskCards) {
+        Card card = board.getCardById(taskCard.getAttribute('data-card-id'));
+        int col_id = int.parse(taskCard.parent.getAttribute('data-column-id'));
 
-        card = board.getCardById(card_id);
+        card.columnId = col_id;
 
-        if (c_id != column_id) i = 0;
+        if (c_id != col_id) order = 0;
 
-        card.columnId = column_id;
-        card.order = i++;
-
-        c_id = column_id;
+        c_id = col_id;
+        card.order = order++;
       };
 
       this.reload();
     });
 
-    p.onDragEnd.listen((AssortmentEvent event) {
-      List<Element> elements = querySelectorAll('.project-card');
+    projectAssortment.onDragEnd.listen((Element element) {
+      List<Element> projectCards = querySelectorAll('.project-card');
 
-      int i = 0;
-      Card card;
-      for (Element element in elements) {
-        String card_id = element.getAttribute('data-card-id');
-        card = board.getProjectById(card_id);
-        card.order = i++;
+      int order = 0;
+      for (Element projectCard in projectCards) {
+        board.getProjectById(projectCard.getAttribute('data-card-id')).order = order++;
       };
 
       this.reload();
     });
   }
-
 }
