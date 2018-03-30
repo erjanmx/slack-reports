@@ -33,7 +33,7 @@ class Board {
   ];
 
 
-  bool eveningReport = false;
+  bool eveningReport = true;
 
   Board(this.name);
 
