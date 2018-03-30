@@ -28951,7 +28951,7 @@ y=this.b.d
 new P.b3(y,[H.r(y,0)]).E(new Q.Ed(this))
 y=this.c.d
 new P.b3(y,[H.r(y,0)]).E(new Q.Ee(this))},
-ut:function(){this.a=new D.EZ(this.d+"-"+this.e,[new M.jn(1,"Todo"),new M.jn(2,"Doing"),new M.jn(3,"Done")],new M.jn(0,"Projects"),[],[],P.a_([1,"\u041d\u0415 \u0421\u0414\u0415\u041b\u0410\u041d\u041e",2,"\u0412 \u041f\u0420\u041e\u0426\u0415\u0421\u0421\u0415",3,"\u0421\u0414\u0415\u041b\u0410\u041d\u041e"]),["","#00FFFF","#5F9EA0","#FF8C00","#FF1493","#228B22","#20B2AA","#9370DB","#C71585","#FFA500","#4169E1"],!1)
+ut:function(){this.a=new D.EZ(this.d+"-"+this.e,[new M.jn(1,"Todo"),new M.jn(2,"Doing"),new M.jn(3,"Done")],new M.jn(0,"Projects"),[],[],P.a_([1,"\u041d\u0415 \u0421\u0414\u0415\u041b\u0410\u041d\u041e",2,"\u0412 \u041f\u0420\u041e\u0426\u0415\u0421\u0421\u0415",3,"\u0421\u0414\u0415\u041b\u0410\u041d\u041e"]),["","#00FFFF","#5F9EA0","#FF8C00","#FF1493","#228B22","#20B2AA","#9370DB","#C71585","#FFA500","#4169E1"],!0)
 this.fD()},
 D:{
 pX:function(){var z=new Q.fT(null,null,null,"Dashboard","0.1.0")
