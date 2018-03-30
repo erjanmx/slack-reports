@@ -1,3 +1,3 @@
-# slack_reports
+# Slack reports
 
-An absolute bare-bones web app.
+Simple trello-like todo list
