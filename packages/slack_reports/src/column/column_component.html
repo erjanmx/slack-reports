@@ -7,7 +7,7 @@
             <emx-card [card]="card" [projects]="projects"
                       (cardUpdatedEvent)="updateCard(card)"
                       (cardRemovedEvent)="deleteCard(card)"
-                      (cardAttachProjectEvent)="attachProject($event)"
+                      (projectAttachEvent)="attachProject($event)"
             >
             </emx-card>
         </li>
