@@ -99,7 +99,7 @@ class Board {
     List<Card> nonProjectCards = this.cards.where((Card card) => (card.projectId.isEmpty)).toList();
     output += this.build(nonProjectCards);
 
-    return output;
+    return output.trim();
   }
 
   Card getCardById(String id) => this.cards.firstWhere((Card card) => card.id == id);
