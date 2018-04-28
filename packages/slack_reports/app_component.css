@@ -30,3 +30,48 @@ textarea {
     margin-left: 10px;
     color: white;
 }
+
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.container {
+    max-width: 50%;
+    vertical-align: top;
+}
+
+.container > div {display: inline-block}
+
+.textarea {
+    width: 65%;
+    vertical-align: top;
+    min-height: 40vh;
+}
+
+.buttons {
+    width: 30%;
+    vertical-align: bottom;
+}
+
+.buttons > button {
+    outline: none;
+    border: none;
+    margin: 0;
+    border-radius: 5px;
+}
+
+#channel-name {
+    color: #999;
+    font-size: 14px;
+    line-height: 20px;
+    margin-top: 0;
+}
