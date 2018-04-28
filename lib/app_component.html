@@ -15,5 +15,15 @@
 </section>
 <div class="toggle">
     <material-toggle [disabled]="false" [(checked)]="board.eveningReport" label="Evening report"></material-toggle>
+    <input [style.display]="authorized() ? '' : 'none'" [(ngModel)]="slackChannel" id="channel-name" placeholder="Slack channel name" />
+    <a [style.display]="!authorized() ? '' : 'none'" href="https://slack.com/oauth/authorize?scope=chat:write:user&client_id=14172408775.340791157783">
+        <img alt="Sign in with Slack" height="40" width="172" src="https://platform.slack-edge.com/img/sign_in_with_slack.png" srcset="https://platform.slack-edge.com/img/sign_in_with_slack.png 1x, https://platform.slack-edge.com/img/sign_in_with_slack@2x.png 2x" />
+    </a>
+    <button class="button" [style.display]="authorized() ? '' : 'none'" (click)="sendToSlack()">Send to Slack</button>
 </div>
-<textarea>{{ board }}</textarea>
+<div class="container">
+    <textarea class="textarea" id="text">{{ board }}</textarea>
+
+    <div class="buttons">
+    </div>
+</div>
