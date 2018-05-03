@@ -54,7 +54,7 @@ textarea {
 .textarea {
     width: 65%;
     vertical-align: top;
-    min-height: 40vh;
+    min-height: 35vh;
 }
 
 .buttons {
