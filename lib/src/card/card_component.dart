@@ -39,12 +39,16 @@ class CardComponent {
   }
 
   String getProjectName() {
+    if (card.projectId == '') {
+      return 'No project';
+    }
+
     String result = this.projects
         .firstWhere((Card card) => card.id == this.card.projectId)
         .title;
 
-    if (result == '-') {
-      result = 'No project';
+    if (result.length > 15) {
+      result = result.substring(0, 12) + '...';
     }
 
     return result;
