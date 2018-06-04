@@ -38,6 +38,18 @@ class CardComponent {
     );
   }
 
+  String getProjectName() {
+    String result = this.projects
+        .firstWhere((Card card) => card.id == this.card.projectId)
+        .title;
+
+    if (result == '-') {
+      result = 'No project';
+    }
+
+    return result;
+  }
+
   void updateCard() {
     this.card.title = this.card.title.trim();
     _cardUpdatedEvent.add(this.card);
