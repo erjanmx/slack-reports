@@ -1,16 +1,24 @@
 <li class="card" [style.background]="card.id">
-    <div [style.display]="editingCard ? 'none' : ''">
-        <span [innerHtml]="card.title" (click)="editCard()"></span>
-        <material-icon (click)="deleteCard()" size="medium" light="light" icon="cancel"></material-icon>
+    <div class="ibox" [style.display]="editingCard ? 'none' : ''">
+        <div class="ibox-title">
+            <div class="ibox-tools">
+                <material-icon (click)="deleteCard()" size="large" light="light" icon="cancel"></material-icon>
 
-        <div *ngIf="card.columnId!=0" class="dropdown">
-            <material-icon size="medium" light="light" icon="view_headline" [style.background]="card.projectId" (click)="showingMenu=true;"></material-icon>
+                <div *ngIf="card.columnId!=0" class="dropdown">
+                    <span class="label" [style.background]="card.projectId" (click)="showingMenu=true;">{{ getProjectName() }} </span>
 
-            <div [class.show]="showingMenu" class="dropdown-content">
-                <select size="5">
-                    <option *ngFor="let project of projects" (click)="attachProject(project.id)">{{ project.title }}</option>
-                </select>
+                    <div [class.show]="showingMenu" class="dropdown-content">
+                        <select size="5">
+                            <option *ngFor="let project of projects" (click)="attachProject(project.id)">{{ project.title }}</option>
+                        </select>
+                    </div>
+                </div>
             </div>
+        </div>
+        <div class="ibox-content">
+            <p>
+                <span [innerHtml]="card.title" (click)="editCard()"></span>
+            </p>
         </div>
     </div>
     <textarea
